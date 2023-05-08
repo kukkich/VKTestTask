@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace VKTestTask.Domain.Dto;
+﻿namespace VKTestTask.Domain.Dto;
 
 public class Page
 {

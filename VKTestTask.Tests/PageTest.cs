@@ -7,7 +7,7 @@ public class PageTest
     [Fact]
     public void GIVEN_Page_WHEN_Offset_calculated_THEN_Correct_value_expected()
     {
-        var page = new Page{Number = 3, Size = 10};
+        var page = new Page { Number = 3, Size = 10 };
 
         var offset = page.Offset;
 

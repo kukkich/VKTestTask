@@ -34,7 +34,7 @@ public class Program
         }
 
         app.UseHttpsRedirection();
-        
+
         app.UseMiddleware<ErrorsHandlerMiddleware>();
         app.UseMiddleware<BasicAuthMiddleware>();
 

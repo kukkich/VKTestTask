@@ -7,7 +7,7 @@ public class UserCreationModel
 {
     [Required(ErrorMessage = $"{nameof(Login)} required")]
     public string Login { get; set; } = null!;
-    
+
     [Required(ErrorMessage = $"{nameof(Password)} required")]
     public string Password { get; set; } = null!;
 

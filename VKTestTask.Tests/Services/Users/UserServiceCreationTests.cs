@@ -26,32 +26,32 @@ public class UserServiceCreationTests
     };
 
     [Fact]
-    async void GIVEN_Admin_exist_WHEN_Try_add_new_admin_THEN_Exception_will_be_thrown()
+    private async void GIVEN_Admin_exist_WHEN_Try_add_new_admin_THEN_Exception_will_be_thrown()
     {
         GetMockServices(out var reserver, out _, out var timeSrService, out var delayService);
         var reposMock = new Mock<IUserRepository>();
         reposMock.Setup(x => x.IsAdminExist()).Returns(Task.Run(() => true));
 
         IUserService userService = new UserService(reserver, reposMock.Object, timeSrService, delayService);
-        
+
         await Assert.ThrowsAsync<AdminAlreadyExistException>(() => userService.Create(NewAdmin));
     }
 
     [Fact]
-    async void GIVEN_Admin_doesnt_exist_WHEN_Try_add_new_admin_THEN_no_exception_will_be_thrown()
+    private async void GIVEN_Admin_doesnt_exist_WHEN_Try_add_new_admin_THEN_no_exception_will_be_thrown()
     {
         GetMockServices(out var reserver, out _, out var timeSrService, out var delayService);
         var reposMock = new Mock<IUserRepository>();
         reposMock.Setup(x => x.IsAdminExist()).Returns(Task.Run(() => false));
         IUserService userService = new UserService(reserver, reposMock.Object, timeSrService, delayService);
-       
+
         var exception = await Record.ExceptionAsync(async () => await userService.Create(NewAdmin));
-        
+
         Assert.Null(exception);
     }
 
     [Fact]
-    async void GIVEN_Time_service_WHEN_Try_add_user_THEN_created_date_as_in_time_service()
+    private async void GIVEN_Time_service_WHEN_Try_add_user_THEN_created_date_as_in_time_service()
     {
         GetMockServices(out var reserver, out _, out _, out var delayService);
         var timeService = new Mock<ITimeService>();
@@ -67,7 +67,7 @@ public class UserServiceCreationTests
     }
 
     [Fact]
-    async void GIVEN_User_exist_WHEN_Try_add_user_with_same_login_THEN_Exception_will_be_thrown()
+    private async void GIVEN_User_exist_WHEN_Try_add_user_with_same_login_THEN_Exception_will_be_thrown()
     {
         GetMockServices(out var reserver, out var repos, out var timeService, out var delayService);
         var reposMock = new Mock<IUserRepository>();

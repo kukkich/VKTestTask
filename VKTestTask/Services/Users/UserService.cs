@@ -58,7 +58,7 @@ public class UserService : IUserService
 
         await Task.Delay(_delayTimeService.GetDelay()); // Required delay
 
-        
+
         if (await _userRepository.IsLoginExist(user.Login))
         {
             throw new LoginAlreadyExistException(user.Login);

@@ -18,7 +18,7 @@ public class UserDto
         CreatedDate = user.CreatedDate;
         UserGroup = user.UserGroup;
         UserState = user.UserState;
-} 
+    }
 
     public static explicit operator UserDto(User user)
     {

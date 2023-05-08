@@ -4,13 +4,13 @@ namespace VKTestTask.Services.Reservation;
 
 public class InMemoryLoginReservationService : ILoginReservationService
 {
-    private readonly ConcurrentDictionary<string, bool> _reserved = new ();
+    private readonly ConcurrentDictionary<string, bool> _reserved = new();
 
     public void Reserve(string login)
     {
         var isSuccessfullyAdded = _reserved.TryAdd(login, default);
 
-        if (!isSuccessfullyAdded) 
+        if (!isSuccessfullyAdded)
             throw new InvalidOperationException($"Login {login} was reserved");
     }
 
@@ -18,7 +18,7 @@ public class InMemoryLoginReservationService : ILoginReservationService
     {
         var isSuccessfullyRemoved = _reserved.TryRemove(login, out _);
 
-        if (!isSuccessfullyRemoved) 
+        if (!isSuccessfullyRemoved)
             throw new InvalidOperationException($"No reserved login {login}");
     }
 

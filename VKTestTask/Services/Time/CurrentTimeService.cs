@@ -2,5 +2,5 @@
 
 public class CurrentTimeService : ITimeService
 {
-    public DateTime GetTime() => DateTime.Now; 
+    public DateTime GetTime() => DateTime.Now;
 }

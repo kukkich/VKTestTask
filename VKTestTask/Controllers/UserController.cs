@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using VKTestTask.Domain;
 using VKTestTask.Domain.Dto;
 using VKTestTask.Services.Users;
 
@@ -45,7 +44,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> Add([FromBody] UserCreationModel user)
     {
         //|| !user.IsValidGroupCode()
-        if (!ModelState.IsValid )
+        if (!ModelState.IsValid)
             return BadRequest(ModelState.Values.SelectMany(v => v.Errors.Select(b => b.ErrorMessage)));
 
         var result = await _userService.Create(user);
