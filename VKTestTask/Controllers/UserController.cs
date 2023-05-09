@@ -43,7 +43,6 @@ public class UserController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] UserCreationModel user)
     {
-        //|| !user.IsValidGroupCode()
         if (!ModelState.IsValid)
             return BadRequest(ModelState.Values.SelectMany(v => v.Errors.Select(b => b.ErrorMessage)));
 

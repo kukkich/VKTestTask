@@ -17,14 +17,23 @@ public class BasicAuthMiddleware
     public async Task Invoke(HttpContext context)
     {
         var authHeader = context.Request.Headers.Authorization.ToString();
-        if (!authHeader.StartsWith("Basic "))
+        if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Basic "))
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
             return;
         }
 
-        var bytesAuthData = Convert.FromBase64String(authHeader.Split(' ')[1]);
-        var authData = Encoding.UTF8.GetString(bytesAuthData);
+        string authData;
+        try
+        {
+            var bytesAuthData = Convert.FromBase64String(authHeader.Split(' ')[1]);
+            authData = Encoding.UTF8.GetString(bytesAuthData);
+        }
+        catch
+        {
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            return;
+        }
 
         if (!authData.Contains(':'))
         {

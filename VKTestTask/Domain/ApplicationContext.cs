@@ -11,6 +11,6 @@ public class ApplicationContext : DbContext
     public ApplicationContext(DbContextOptions options)
         : base(options)
     {
-        if (!Database.EnsureCreated()) return;
+        Database.EnsureCreated();
     }
 }

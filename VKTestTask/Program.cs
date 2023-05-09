@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using VKTestTask.Domain;
 using VKTestTask.Extensions;
 using VKTestTask.Middlewares;
@@ -18,7 +19,34 @@ public class Program
         });
 
         services.AddControllers();
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(option =>
+        {
+            option.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
+            {
+                Description = "Header for test task: Basic YWRtaW46MTIz" +
+                              "<br/>Write down it in the field below and click 'Authorize'" +
+                              "<br/>YWRtaW46MTIz is Base64 code of 'admin:123'",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Basic"
+            });
+
+            var apiSecurityScheme = new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Basic"
+                },
+                Name = "Basic",
+                In = ParameterLocation.Header,
+            };
+            option.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                [apiSecurityScheme] = new List<string>()
+            });
+        });
         services.AddEndpointsApiExplorer();
 
         services.AddDomain();
