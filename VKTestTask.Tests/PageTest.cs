@@ -9,7 +9,7 @@ public class PageTest
     {
         var page = new Page { Number = 3, Size = 10 };
 
-        var offset = page.Offset;
+        var offset = page.GetOffset();
 
         Assert.Equal(20, offset);
     }
@@ -19,7 +19,7 @@ public class PageTest
     {
         var page = new Page { Number = 3, Size = 10 };
 
-        var isInValidState = page.IsInValidState;
+        var isInValidState = page.IsInValidState();
 
         Assert.True(isInValidState);
     }
@@ -32,7 +32,7 @@ public class PageTest
         var page = new Page { Number = number, Size = size };
 
 
-        var isInValidState = page.IsInValidState;
+        var isInValidState = page.IsInValidState();
 
         Assert.False(isInValidState);
     }
@@ -44,7 +44,7 @@ public class PageTest
     {
         var page = new Page { Number = number, Size = size };
 
-        var isInValidState = page.IsInValidState;
+        var isInValidState = page.IsInValidState();
 
         Assert.True(isInValidState);
     }
@@ -57,7 +57,7 @@ public class PageTest
     {
         var page = new Page { Number = number, Size = size };
 
-        var isInValidState = page.IsInValidState;
+        var isInValidState = page.IsInValidState();
 
         Assert.False(isInValidState);
     }
@@ -67,7 +67,7 @@ public class PageTest
     {
         var page = new Page { Number = 12, Size = 1 };
 
-        var isInValidState = page.IsInValidState;
+        var isInValidState = page.IsInValidState();
 
         Assert.True(isInValidState);
     }

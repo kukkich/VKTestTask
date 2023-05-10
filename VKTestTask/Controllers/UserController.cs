@@ -30,9 +30,9 @@ public class UserController : ControllerBase
 
     [HttpGet]
     [ActionName("pagination")]
-    public async Task<IActionResult> Get(Page page)
+    public async Task<IActionResult> GetFromPage(Page page)
     {
-        if (!page.IsInValidState)
+        if (!page.IsInValidState())
             return BadRequest();
 
         var result = await _userService.GetFromPage(page);

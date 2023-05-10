@@ -45,7 +45,7 @@ public class UserService : IUserService
 
     public Task<List<User>> GetFromPage(Page page)
     {
-        return _userRepository.Take(page.Offset, page.Size);
+        return _userRepository.Take(page.GetOffset(), page.Size);
     }
 
     public async Task<User> Create(UserCreationModel user)
